@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Medicine;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
 
 class MedicineController extends Controller
 {
@@ -14,7 +16,7 @@ class MedicineController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(Medicine::all(), Response::HTTP_OK);
     }
 
     /**
@@ -25,7 +27,25 @@ class MedicineController extends Controller
      */
     public function store(Request $request)
     {
-        return Medicine::all();
+        $input = $request->all();
+        $validator = $this->validateInputs($input);
+
+        if($validator->fails()){
+            return response()->json(["errors" => $validator->errors()], Response::HTTP_BAD_REQUEST);
+        }
+
+        $medicine = new Medicine();
+        $medicine->brand = $input['brand'];
+        $medicine->drug = $input['drug'];
+        $medicine->dose = $input['dose'];
+
+        try{
+            $medicine->save();
+            return response()->json($medicine, Response::HTTP_CREATED);
+        }catch(\Exception $e){
+            return response()->json(["errors" => "Ocorreu um erro ao tentar guardar o medicamento"], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+
     }
 
     /**
@@ -36,7 +56,7 @@ class MedicineController extends Controller
      */
     public function show(Medicine $medicine)
     {
-        return $medicine;
+        return response()->json($medicine, Response::HTTP_OK);
     }
 
     /**
@@ -48,7 +68,23 @@ class MedicineController extends Controller
      */
     public function update(Request $request, Medicine $medicine)
     {
-        //
+        $input = $request->all();
+        $validator = $this->validateInputs($input);
+
+        if($validator->fails()){
+            return response()->json(["errors" => $validator->errors()], Response::HTTP_BAD_REQUEST);
+        }
+
+        $medicine->brand = $input['brand'];
+        $medicine->drug = $input['drug'];
+        $medicine->dose = $input['dose'];
+
+        try{
+            $medicine->save();
+            return response()->json($medicine, Response::HTTP_OK);
+        }catch(\Exception $e){
+            return response()->json(["errors" => "Ocorreu um erro ao tentar guardar o medicamento"], Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
     }
 
     /**
@@ -59,6 +95,18 @@ class MedicineController extends Controller
      */
     public function destroy(Medicine $medicine)
     {
-        return Medicine::destroy($medicine->id);
+        Medicine::destroy($medicine->id);
+        return response()->json(["success" => "Medicine successfully deleted!"], Response::HTTP_OK);
+    }
+
+    private function validateInputs($input){
+
+        $rules = [
+            'brand' => 'required',
+            'drug' => 'required',
+            'dose' => 'required',
+        ];
+
+        return Validator::make($input, $rules);
     }
 }
