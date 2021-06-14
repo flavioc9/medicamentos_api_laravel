@@ -7,10 +7,15 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 
+/**
+ * @group Gestão de medicamentos
+ *
+ * APIs para gerir medicamentos
+ */
 class MedicineController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Retorna uma lista de medicamentos
      *
      * @return \Illuminate\Http\Response
      */
@@ -20,7 +25,23 @@ class MedicineController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Criar um medicamento
+     *
+     * @bodyParam brand string required Marca do farmaco. Example: Ben-u-ron
+     * @bodyParam drug string required Farmaco. Example: paracetamol
+     * @bodyParam dose string required Concentração do farmaco. Example: 1000mg
+     *
+     * @response scenario=success status=201 {
+     *   "brand": "Ben-n-uron",
+     *   "drug": "paracetamol",
+     *   "dose": "1000mg",
+     *   "updated_at": "2021-06-14T20:00:18.000000Z",
+     *   "created_at": "2021-06-14T20:00:18.000000Z",
+     *   "id": 7
+     * }
+     * @response scenario="bad request" status=400 {
+     *    "error" : "error description"
+     * }
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -49,7 +70,7 @@ class MedicineController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Retorna um medicamento
      *
      * @param  \App\Models\Medicine  $medicine
      * @return \Illuminate\Http\Response
@@ -60,7 +81,9 @@ class MedicineController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Atualiza um medicamento.
+     *
+     * @urlParam id integer required O id do medicamento a atualizar. Example: 1.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Medicine  $medicine
@@ -88,7 +111,8 @@ class MedicineController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Apaga um medicamento da base de dados.
+     *
      *
      * @param  \App\Models\Medicine  $medicine
      * @return \Illuminate\Http\Response

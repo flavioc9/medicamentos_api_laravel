@@ -1,0 +1,300 @@
+{
+    "variable": [
+        {
+            "id": "baseUrl",
+            "key": "baseUrl",
+            "type": "string",
+            "name": "string",
+            "value": "localhost"
+        }
+    ],
+    "info": {
+        "name": "Medicamentos Laravel API",
+        "_postman_id": "68be32d0-ba70-4246-9836-4613653483c2",
+        "description": "Super Api que permite uma gest\u00e3o muito eficaz de medicamentos",
+        "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
+    },
+    "item": [
+        {
+            "name": "Gest\u00e3o de medicamentos",
+            "description": "\nAPIs para gerir medicamentos",
+            "item": [
+                {
+                    "name": "Retorna uma lista de medicamentos",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/medicine",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/medicine"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": null
+                        }
+                    ]
+                },
+                {
+                    "name": "Criar um medicamento",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/medicine",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/medicine"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"brand\":\"Ben-u-ron\",\"drug\":\"paracetamol\",\"dose\":\"1000mg\"}"
+                        },
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n  \"brand\": \"Ben-n-uron\",\n  \"drug\": \"paracetamol\",\n  \"dose\": \"1000mg\",\n  \"updated_at\": \"2021-06-14T20:00:18.000000Z\",\n  \"created_at\": \"2021-06-14T20:00:18.000000Z\",\n  \"id\": 7\n}",
+                            "name": "201, success"
+                        },
+                        {
+                            "header": [],
+                            "code": 400,
+                            "body": "{\n   \"error\" : \"error description\"\n}",
+                            "name": "400, bad request"
+                        }
+                    ]
+                },
+                {
+                    "name": "Retorna um medicamento",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/medicine\/:medicine",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/medicine\/:medicine",
+                            "variable": [
+                                {
+                                    "id": "medicine",
+                                    "key": "medicine",
+                                    "value": "2",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [
+                                {
+                                    "key": "cache-control",
+                                    "value": "no-cache, private"
+                                },
+                                {
+                                    "key": "content-type",
+                                    "value": "application\/json"
+                                },
+                                {
+                                    "key": "access-control-allow-origin",
+                                    "value": "*"
+                                }
+                            ],
+                            "code": 401,
+                            "body": "{\"message\":\"Unauthenticated.\"}",
+                            "name": null
+                        }
+                    ]
+                },
+                {
+                    "name": "Atualiza um medicamento.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/medicine\/:medicine",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/medicine\/:medicine",
+                            "variable": [
+                                {
+                                    "id": "medicine",
+                                    "key": "medicine",
+                                    "value": "17",
+                                    "description": ""
+                                },
+                                {
+                                    "id": "id",
+                                    "key": "id",
+                                    "value": "1",
+                                    "description": "O id do medicamento a atualizar."
+                                }
+                            ]
+                        },
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                },
+                {
+                    "name": "Apaga um medicamento da base de dados.",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/medicine\/:medicine",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/medicine\/:medicine",
+                            "variable": [
+                                {
+                                    "id": "medicine",
+                                    "key": "medicine",
+                                    "value": "18",
+                                    "description": ""
+                                }
+                            ]
+                        },
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": []
+                }
+            ]
+        },
+        {
+            "name": "Gest\u00e3o de utilizadores",
+            "description": "\nAPIs para gerir utilizadores",
+            "item": [
+                {
+                    "name": "Retorna o utilizador autenticado",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/user",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/user"
+                        },
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": ""
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 200,
+                            "body": "{\n   \"id\": 4,\n   \"name\": \"Z\u00e9 Ninguem\",\n   \"email\": \"ze.ninguem@mail.pt\",\n   \"email_verified_at\": \"2021-06-11T20:22:25.000000Z\",\n   \"created_at\": \"2021-06-11T20:22:26.000000Z\",\n   \"updated_at\": \"2021-06-11T20:22:26.000000Z\"\n}",
+                            "name": "200, success"
+                        }
+                    ]
+                },
+                {
+                    "name": "Cria um utilizador",
+                    "request": {
+                        "url": {
+                            "protocol": "http",
+                            "host": "{{baseUrl}}",
+                            "path": "api\/user",
+                            "query": [],
+                            "raw": "http:\/\/{{baseUrl}}\/api\/user"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "{\"name\":\"Z\u00e9 Ningu\u00e9m\",\"email\":\"ze.ningu\u00e9m@mail.pt\",\"password\":\"Test1234!\",\"token_name\":\"super_token\"}"
+                        },
+                        "description": "<aside class=\"notice\">Devolve o token necess\u00e1rio para autentica\u00e7\u00e3o.<\/aside>",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": [
+                        {
+                            "header": [],
+                            "code": 201,
+                            "body": "{\n   \"token\" : \"5|aRBYbrDcc28xbtTxOHk4In7MbpjMuVyPthEmKpk7\"\n}",
+                            "name": "201, success"
+                        },
+                        {
+                            "header": [],
+                            "code": 400,
+                            "body": "{\n   \"error\" : [\n         \"field_name\" : \"error description\"\n   ]\n}",
+                            "name": "400, bad request"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "auth": {
+        "type": "bearer"
+    }
+}

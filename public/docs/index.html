@@ -1,0 +1,937 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Medicamentos Laravel API</title>
+
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../docs/css/theme-default.style.css" media="screen">
+    <link rel="stylesheet" href="../docs/css/theme-default.print.css" media="print">
+    <script src="../docs/js/theme-default-3.0.2.js"></script>
+
+    <link rel="stylesheet"
+          href="//unpkg.com/@highlightjs/cdn-assets@10.7.2/styles/obsidian.min.css">
+    <script src="//unpkg.com/@highlightjs/cdn-assets@10.7.2/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+
+    <script src="//cdn.jsdelivr.net/npm/lodash@4.17.10/lodash.min.js"></script>
+    <script>
+        var baseUrl = "http://localhost:8000";
+    </script>
+    <script src="../docs/js/tryitout-3.0.2.js"></script>
+
+</head>
+
+<body class="" data-languages="[&quot;bash&quot;,&quot;javascript&quot;,&quot;php&quot;]">
+<a href="#" id="nav-button">
+      <span>
+        MENU
+        <img src="../docs/images/navbar.png" alt="navbar-image" />
+      </span>
+</a>
+<div class="tocify-wrapper">
+                <div class="lang-selector">
+                            <a href="#" data-language-name="bash">bash</a>
+                            <a href="#" data-language-name="javascript">javascript</a>
+                            <a href="#" data-language-name="php">php</a>
+                    </div>
+        <div class="search">
+        <input type="text" class="search" id="input-search" placeholder="Search">
+    </div>
+    <ul class="search-results"></ul>
+
+    <ul id="toc">
+    </ul>
+
+            <ul class="toc-footer" id="toc-footer">
+                            <li><a href="../docs/collection.json">View Postman collection</a></li>
+                            <li><a href="../docs/openapi.yaml">View OpenAPI spec</a></li>
+                    </ul>
+            <ul class="toc-footer" id="last-updated">
+            <li>Last updated: June 14 2021</li>
+        </ul>
+</div>
+<div class="page-wrapper">
+    <div class="dark-box"></div>
+    <div class="content">
+        <h1>Introduction</h1>
+<p>Super Api que permite uma gestão muito eficaz de medicamentos</p>
+<pre><code>Super Api que permite uma gestão muito eficaz de medicamentos</code></pre>
+<aside>Uma das melhores Apis de todos os tempos</aside>
+<blockquote>
+<p>Base URL</p>
+</blockquote>
+<pre><code class="language-yaml">http://localhost:8000</code></pre>
+
+        <h1>Authenticating requests</h1>
+<p>This API is authenticated by sending an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {YOUR_AUTH_KEY}"</code></strong>.</p>
+<p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
+<p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p>
+
+        <h1 id="gestao-de-medicamentos">Gestão de medicamentos</h1>
+    <p>
+        <p>APIs para gerir medicamentos</p>
+    </p>
+
+            <h2 id="gestao-de-medicamentos-GETapi-medicine">Retorna uma lista de medicamentos</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">
+curl --request GET \
+    --get "http://localhost:8000/api/medicine" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"```</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/medicine"
+);
+
+let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+
+<pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost:8000/api/medicine',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre>
+            <code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code>
+            </pre>
+        </details>         <pre>
+                <code class="language-json">
+{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}
+ </code>
+        </pre>
+    <div id="execution-results-GETapi-medicine" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-medicine"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-medicine"></code></pre>
+</div>
+<div id="execution-error-GETapi-medicine" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-medicine"></code></pre>
+</div>
+<form id="form-GETapi-medicine" data-method="GET"
+      data-path="api/medicine"
+      data-authed="1"
+      data-hasfiles=""
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Accept":"application\/json"}'
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-medicine', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-medicine"
+                    onclick="tryItOut('GETapi-medicine');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-medicine"
+                    onclick="cancelTryOut('GETapi-medicine');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-medicine" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/medicine</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-medicine" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-medicine"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+            <h2 id="gestao-de-medicamentos-POSTapi-medicine">Criar um medicamento</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/medicine" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{\"brand\":\"Ben-u-ron\",\"drug\":\"paracetamol\",\"dose\":\"1000mg\"}"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/medicine"
+);
+
+let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "brand": "Ben-u-ron",
+    "drug": "paracetamol",
+    "dose": "1000mg"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+
+<pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://localhost:8000/api/medicine',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'brand' =&gt; 'Ben-u-ron',
+            'drug' =&gt; 'paracetamol',
+            'dose' =&gt; '1000mg',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+
+            <blockquote>
+            <p>Example response (201, success):</p>
+        </blockquote>
+                <pre>
+                <code class="language-json">
+{
+    &quot;brand&quot;: &quot;Ben-n-uron&quot;,
+    &quot;drug&quot;: &quot;paracetamol&quot;,
+    &quot;dose&quot;: &quot;1000mg&quot;,
+    &quot;updated_at&quot;: &quot;2021-06-14T20:00:18.000000Z&quot;,
+    &quot;created_at&quot;: &quot;2021-06-14T20:00:18.000000Z&quot;,
+    &quot;id&quot;: 7
+}
+ </code>
+        </pre>
+            <blockquote>
+            <p>Example response (400, bad request):</p>
+        </blockquote>
+                <pre>
+                <code class="language-json">
+{
+    &quot;error&quot;: &quot;error description&quot;
+}
+ </code>
+        </pre>
+    <div id="execution-results-POSTapi-medicine" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-medicine"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-medicine"></code></pre>
+</div>
+<div id="execution-error-POSTapi-medicine" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-medicine"></code></pre>
+</div>
+<form id="form-POSTapi-medicine" data-method="POST"
+      data-path="api/medicine"
+      data-authed="1"
+      data-hasfiles=""
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Accept":"application\/json"}'
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-medicine', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-medicine"
+                    onclick="tryItOut('POSTapi-medicine');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-medicine"
+                    onclick="cancelTryOut('POSTapi-medicine');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-medicine" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/medicine</code></b>
+        </p>
+                <p>
+            <label id="auth-POSTapi-medicine" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="POSTapi-medicine"
+                                                                data-component="header"></label>
+        </p>
+                        <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>brand</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="brand" data-endpoint="POSTapi-medicine" data-component="body" required  hidden>
+<br>
+<p>Marca do farmaco.</p>        </p>
+                <p>
+            <b><code>drug</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="drug" data-endpoint="POSTapi-medicine" data-component="body" required  hidden>
+<br>
+<p>Farmaco.</p>        </p>
+                <p>
+            <b><code>dose</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="dose" data-endpoint="POSTapi-medicine" data-component="body" required  hidden>
+<br>
+<p>Concentração do farmaco.</p>        </p>
+    
+    </form>
+
+            <h2 id="gestao-de-medicamentos-GETapi-medicine--medicine-">Retorna um medicamento</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">
+curl --request GET \
+    --get "http://localhost:8000/api/medicine/2" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"```</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/medicine/2"
+);
+
+let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+
+<pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost:8000/api/medicine/2',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+
+            <blockquote>
+            <p>Example response (401):</p>
+        </blockquote>
+                <details class="annotation">
+            <summary>
+                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
+            </summary>
+            <pre>
+            <code class="language-http">cache-control: no-cache, private
+content-type: application/json
+access-control-allow-origin: *
+ </code>
+            </pre>
+        </details>         <pre>
+                <code class="language-json">
+{
+    &quot;message&quot;: &quot;Unauthenticated.&quot;
+}
+ </code>
+        </pre>
+    <div id="execution-results-GETapi-medicine--medicine-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-medicine--medicine-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-medicine--medicine-"></code></pre>
+</div>
+<div id="execution-error-GETapi-medicine--medicine-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-medicine--medicine-"></code></pre>
+</div>
+<form id="form-GETapi-medicine--medicine-" data-method="GET"
+      data-path="api/medicine/{medicine}"
+      data-authed="1"
+      data-hasfiles=""
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Accept":"application\/json"}'
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-medicine--medicine-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-medicine--medicine-"
+                    onclick="tryItOut('GETapi-medicine--medicine-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-medicine--medicine-"
+                    onclick="cancelTryOut('GETapi-medicine--medicine-');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-medicine--medicine-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/medicine/{medicine}</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-medicine--medicine-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-medicine--medicine-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>medicine</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="medicine" data-endpoint="GETapi-medicine--medicine-" data-component="url" required  hidden>
+<br>
+            </p>
+                    </form>
+
+            <h2 id="gestao-de-medicamentos-PUTapi-medicine--medicine-">Atualiza um medicamento.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">
+curl --request PUT \
+    "http://localhost:8000/api/medicine/17" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"```</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/medicine/17"
+);
+
+let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "PUT",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+
+<pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;put(
+    'http://localhost:8000/api/medicine/17',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+
+<div id="execution-results-PUTapi-medicine--medicine-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-PUTapi-medicine--medicine-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-PUTapi-medicine--medicine-"></code></pre>
+</div>
+<div id="execution-error-PUTapi-medicine--medicine-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-PUTapi-medicine--medicine-"></code></pre>
+</div>
+<form id="form-PUTapi-medicine--medicine-" data-method="PUT"
+      data-path="api/medicine/{medicine}"
+      data-authed="1"
+      data-hasfiles=""
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Accept":"application\/json"}'
+      onsubmit="event.preventDefault(); executeTryOut('PUTapi-medicine--medicine-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-PUTapi-medicine--medicine-"
+                    onclick="tryItOut('PUTapi-medicine--medicine-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-PUTapi-medicine--medicine-"
+                    onclick="cancelTryOut('PUTapi-medicine--medicine-');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-PUTapi-medicine--medicine-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-darkblue">PUT</small>
+            <b><code>api/medicine/{medicine}</code></b>
+        </p>
+            <p>
+            <small class="badge badge-purple">PATCH</small>
+            <b><code>api/medicine/{medicine}</code></b>
+        </p>
+                <p>
+            <label id="auth-PUTapi-medicine--medicine-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="PUTapi-medicine--medicine-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>medicine</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="medicine" data-endpoint="PUTapi-medicine--medicine-" data-component="url" required  hidden>
+<br>
+            </p>
+                    <p>
+                <b><code>id</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="id" data-endpoint="PUTapi-medicine--medicine-" data-component="url" required  hidden>
+<br>
+<p>O id do medicamento a atualizar.</p>            </p>
+                    </form>
+
+            <h2 id="gestao-de-medicamentos-DELETEapi-medicine--medicine-">Apaga um medicamento da base de dados.</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">
+curl --request DELETE \
+    "http://localhost:8000/api/medicine/18" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"```</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/medicine/18"
+);
+
+let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "DELETE",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+
+<pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;delete(
+    'http://localhost:8000/api/medicine/18',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+
+<div id="execution-results-DELETEapi-medicine--medicine-" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-DELETEapi-medicine--medicine-"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-DELETEapi-medicine--medicine-"></code></pre>
+</div>
+<div id="execution-error-DELETEapi-medicine--medicine-" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-DELETEapi-medicine--medicine-"></code></pre>
+</div>
+<form id="form-DELETEapi-medicine--medicine-" data-method="DELETE"
+      data-path="api/medicine/{medicine}"
+      data-authed="1"
+      data-hasfiles=""
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Accept":"application\/json"}'
+      onsubmit="event.preventDefault(); executeTryOut('DELETEapi-medicine--medicine-', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-DELETEapi-medicine--medicine-"
+                    onclick="tryItOut('DELETEapi-medicine--medicine-');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-DELETEapi-medicine--medicine-"
+                    onclick="cancelTryOut('DELETEapi-medicine--medicine-');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-DELETEapi-medicine--medicine-" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-red">DELETE</small>
+            <b><code>api/medicine/{medicine}</code></b>
+        </p>
+                <p>
+            <label id="auth-DELETEapi-medicine--medicine-" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="DELETEapi-medicine--medicine-"
+                                                                data-component="header"></label>
+        </p>
+                <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
+                    <p>
+                <b><code>medicine</code></b>&nbsp;&nbsp;<small>integer</small>  &nbsp;
+<input type="number" name="medicine" data-endpoint="DELETEapi-medicine--medicine-" data-component="url" required  hidden>
+<br>
+            </p>
+                    </form>
+
+        <h1 id="gestao-de-utilizadores">Gestão de utilizadores</h1>
+    <p>
+        <p>APIs para gerir utilizadores</p>
+    </p>
+
+            <h2 id="gestao-de-utilizadores-GETapi-user">Retorna o utilizador autenticado</h2>
+
+<p>
+<small class="badge badge-darkred">requires authentication</small>
+</p>
+
+
+
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">
+curl --request GET \
+    --get "http://localhost:8000/api/user" \
+    --header "Authorization: Bearer {YOUR_AUTH_KEY}" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"```</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/user"
+);
+
+let headers = {
+    "Authorization": "Bearer {YOUR_AUTH_KEY}",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "GET",
+    headers,
+}).then(response =&gt; response.json());</code></pre>
+
+<pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;get(
+    'http://localhost:8000/api/user',
+    [
+        'headers' =&gt; [
+            'Authorization' =&gt; 'Bearer {YOUR_AUTH_KEY}',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+
+            <blockquote>
+            <p>Example response (200, success):</p>
+        </blockquote>
+                <pre>
+                <code class="language-json">
+{
+    &quot;id&quot;: 4,
+    &quot;name&quot;: &quot;Z&eacute; Ninguem&quot;,
+    &quot;email&quot;: &quot;ze.ninguem@mail.pt&quot;,
+    &quot;email_verified_at&quot;: &quot;2021-06-11T20:22:25.000000Z&quot;,
+    &quot;created_at&quot;: &quot;2021-06-11T20:22:26.000000Z&quot;,
+    &quot;updated_at&quot;: &quot;2021-06-11T20:22:26.000000Z&quot;
+}
+ </code>
+        </pre>
+    <div id="execution-results-GETapi-user" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-GETapi-user"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-GETapi-user"></code></pre>
+</div>
+<div id="execution-error-GETapi-user" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-GETapi-user"></code></pre>
+</div>
+<form id="form-GETapi-user" data-method="GET"
+      data-path="api/user"
+      data-authed="1"
+      data-hasfiles=""
+      data-headers='{"Authorization":"Bearer {YOUR_AUTH_KEY}","Accept":"application\/json"}'
+      onsubmit="event.preventDefault(); executeTryOut('GETapi-user', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-GETapi-user"
+                    onclick="tryItOut('GETapi-user');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-GETapi-user"
+                    onclick="cancelTryOut('GETapi-user');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-GETapi-user" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-green">GET</small>
+            <b><code>api/user</code></b>
+        </p>
+                <p>
+            <label id="auth-GETapi-user" hidden>Authorization header:
+                <b><code>Bearer </code></b><input type="text"
+                                                                name="Authorization"
+                                                                data-prefix="Bearer "
+                                                                data-endpoint="GETapi-user"
+                                                                data-component="header"></label>
+        </p>
+                </form>
+
+            <h2 id="gestao-de-utilizadores-POSTapi-user">Cria um utilizador</h2>
+
+<p>
+</p>
+
+<aside class="notice">Devolve o token necessário para autenticação.</aside>
+
+<blockquote>Example request:</blockquote>
+
+
+<pre><code class="language-bash">curl --request POST \
+    "http://localhost:8000/api/user" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json" \
+    --data "{\"name\":\"Zé Ninguém\",\"email\":\"ze.ninguém@mail.pt\",\"password\":\"Test1234!\",\"token_name\":\"super_token\"}"</code></pre>
+
+<pre><code class="language-javascript">const url = new URL(
+    "http://localhost:8000/api/user"
+);
+
+let headers = {
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+let body = {
+    "name": "Zé Ninguém",
+    "email": "ze.ninguém@mail.pt",
+    "password": "Test1234!",
+    "token_name": "super_token"
+}
+
+fetch(url, {
+    method: "POST",
+    headers,
+    body: JSON.stringify(body),
+}).then(response =&gt; response.json());</code></pre>
+
+<pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$response = $client-&gt;post(
+    'http://localhost:8000/api/user',
+    [
+        'headers' =&gt; [
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'name' =&gt; 'Zé Ninguém',
+            'email' =&gt; 'ze.ninguém@mail.pt',
+            'password' =&gt; 'Test1234!',
+            'token_name' =&gt; 'super_token',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre>
+
+            <blockquote>
+            <p>Example response (201, success):</p>
+        </blockquote>
+                <pre>
+                <code class="language-json">
+{
+    &quot;token&quot;: &quot;5|aRBYbrDcc28xbtTxOHk4In7MbpjMuVyPthEmKpk7&quot;
+}
+ </code>
+        </pre>
+            <blockquote>
+            <p>Example response (400, bad request):</p>
+        </blockquote>
+                <pre>
+                <code class="language-json">
+
+{
+   &quot;error&quot; : [
+         &quot;field_name&quot; : &quot;error description&quot;
+   ]
+}
+ </code>
+        </pre>
+    <div id="execution-results-POSTapi-user" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-user"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-user"></code></pre>
+</div>
+<div id="execution-error-POSTapi-user" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-user"></code></pre>
+</div>
+<form id="form-POSTapi-user" data-method="POST"
+      data-path="api/user"
+      data-authed="0"
+      data-hasfiles=""
+      data-headers='{"Accept":"application\/json"}'
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-user', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-user"
+                    onclick="tryItOut('POSTapi-user');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-user"
+                    onclick="cancelTryOut('POSTapi-user');" hidden>Cancel
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-user" hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/user</code></b>
+        </p>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <p>
+            <b><code>name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="name" data-endpoint="POSTapi-user" data-component="body" required  hidden>
+<br>
+<p>Nome do utilizador.</p>        </p>
+                <p>
+            <b><code>email</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="email" data-endpoint="POSTapi-user" data-component="body" required  hidden>
+<br>
+<p>Email do utilizador.</p>        </p>
+                <p>
+            <b><code>password</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="password" data-endpoint="POSTapi-user" data-component="body" required  hidden>
+<br>
+<p>Nome do utilizador.</p>        </p>
+                <p>
+            <b><code>token_name</code></b>&nbsp;&nbsp;<small>string</small>  &nbsp;
+<input type="text" name="token_name" data-endpoint="POSTapi-user" data-component="body" required  hidden>
+<br>
+<p>Nome do token do utilizador.</p>        </p>
+    
+    </form>
+
+    
+
+        
+    </div>
+    <div class="dark-box">
+                    <div class="lang-selector">
+                                    <a href="#" data-language-name="bash">bash</a>
+                                    <a href="#" data-language-name="javascript">javascript</a>
+                                    <a href="#" data-language-name="php">php</a>
+                            </div>
+            </div>
+</div>
+<script>
+    $(function () {
+        var exampleLanguages = ["bash","javascript","php"];
+        setupLanguages(exampleLanguages);
+    });
+</script>
+</body>
+</html>

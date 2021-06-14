@@ -1,0 +1,309 @@
+openapi: 3.0.3
+info:
+  title: 'Medicamentos Laravel API'
+  description: 'Super Api que permite uma gestão muito eficaz de medicamentos'
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost:8000'
+paths:
+  /api/medicine:
+    get:
+      summary: 'Retorna uma lista de medicamentos'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message: { type: string, example: Unauthenticated. }
+      tags:
+        - 'Gestão de medicamentos'
+    post:
+      summary: 'Criar um medicamento'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        201:
+          description: '201, success'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  brand: Ben-n-uron
+                  drug: paracetamol
+                  dose: 1000mg
+                  updated_at: '2021-06-14T20:00:18.000000Z'
+                  created_at: '2021-06-14T20:00:18.000000Z'
+                  id: 7
+                properties:
+                  brand: { type: string, example: Ben-n-uron }
+                  drug: { type: string, example: paracetamol }
+                  dose: { type: string, example: 1000mg }
+                  updated_at: { type: string, example: '2021-06-14T20:00:18.000000Z' }
+                  created_at: { type: string, example: '2021-06-14T20:00:18.000000Z' }
+                  id: { type: integer, example: 7 }
+        400:
+          description: '400, bad request'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  error: 'error description'
+                properties:
+                  error: { type: string, example: 'error description' }
+      tags:
+        - 'Gestão de medicamentos'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                brand:
+                  type: string
+                  description: 'Marca do farmaco.'
+                  example: Ben-u-ron
+                drug:
+                  type: string
+                  description: Farmaco.
+                  example: paracetamol
+                dose:
+                  type: string
+                  description: 'Concentração do farmaco.'
+                  example: 1000mg
+              required:
+                - brand
+                - drug
+                - dose
+  '/api/medicine/{medicine}':
+    get:
+      summary: 'Retorna um medicamento'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message: { type: string, example: Unauthenticated. }
+      tags:
+        - 'Gestão de medicamentos'
+    put:
+      summary: 'Atualiza um medicamento.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Gestão de medicamentos'
+    delete:
+      summary: 'Apaga um medicamento da base de dados.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - 'Gestão de medicamentos'
+    parameters:
+      -
+        in: path
+        name: medicine
+        description: ''
+        example: 2
+        required: true
+        schema:
+          type: integer
+  /api/user:
+    get:
+      summary: 'Retorna o utilizador autenticado'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Authorization
+          description: ''
+          example: 'Bearer {YOUR_AUTH_KEY}'
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: '200, success'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  id: 4
+                  name: 'Zé Ninguem'
+                  email: ze.ninguem@mail.pt
+                  email_verified_at: '2021-06-11T20:22:25.000000Z'
+                  created_at: '2021-06-11T20:22:26.000000Z'
+                  updated_at: '2021-06-11T20:22:26.000000Z'
+                properties:
+                  id: { type: integer, example: 4 }
+                  name: { type: string, example: 'Zé Ninguem' }
+                  email: { type: string, example: ze.ninguem@mail.pt }
+                  email_verified_at: { type: string, example: '2021-06-11T20:22:25.000000Z' }
+                  created_at: { type: string, example: '2021-06-11T20:22:26.000000Z' }
+                  updated_at: { type: string, example: '2021-06-11T20:22:26.000000Z' }
+      tags:
+        - 'Gestão de utilizadores'
+    post:
+      summary: 'Cria um utilizador'
+      description: '<aside class="notice">Devolve o token necessário para autenticação.</aside>'
+      parameters:
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        201:
+          description: '201, success'
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  token: 5|aRBYbrDcc28xbtTxOHk4In7MbpjMuVyPthEmKpk7
+                properties:
+                  token: { type: string, example: 5|aRBYbrDcc28xbtTxOHk4In7MbpjMuVyPthEmKpk7 }
+        400:
+          description: '400, bad request'
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: "{\n   \"error\" : [\n         \"field_name\" : \"error description\"\n   ]\n}"
+      tags:
+        - 'Gestão de utilizadores'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: 'Nome do utilizador.'
+                  example: 'Zé Ninguém'
+                email:
+                  type: string
+                  description: 'Email do utilizador.'
+                  example: ze.ninguém@mail.pt
+                password:
+                  type: string
+                  description: 'Nome do utilizador.'
+                  example: Test1234!
+                token_name:
+                  type: string
+                  description: 'Nome do token do utilizador.'
+                  example: super_token
+              required:
+                - name
+                - email
+                - password
+                - token_name
+      security: []
+components:
+  securitySchemes:
+    default:
+      type: http
+      scheme: bearer
+      description: ''
+security:
+  -
+    default: []

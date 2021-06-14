@@ -4,6 +4,7 @@ use App\Http\Controllers\MedicineController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,16 +17,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+
+/**
+ * @group Gestão de utilizadores
+ *
+ * Retorna o utilizador autenticado
+ *
+ * @response scenario=success status=200 {
+ *    "id": 4,
+ *    "name": "Zé Ninguem",
+ *    "email": "ze.ninguem@mail.pt",
+ *    "email_verified_at": "2021-06-11T20:22:25.000000Z",
+ *    "created_at": "2021-06-11T20:22:26.000000Z",
+ *    "updated_at": "2021-06-11T20:22:26.000000Z"
+ * }
+ */
+Route::get('/user', function (Request $request) {
     return $request->user();
-});
+})->middleware('auth:sanctum');
 
-Route::post("user", [UserController::class])
-
-Route::resource('medicine', MedicineController::class)->middleware('auth:sanctum');
-
-Route::post('/tokens/create', function (Request $request) {
-    $token = $request->user()->createToken($request->token_name);
-
-    return ['token' => $token->plainTextToken];
-});
+Route::post('user', [UserController::class, 'create']);
+Route::apiResource('medicine', MedicineController::class)->middleware('auth:sanctum');
